@@ -1,54 +1,53 @@
-.table{
+.table {
   width: 850px;
   margin: 0 auto;
   background-color: rgb(245, 242, 239);
   display: flex;
   border: 2px solid black;
-  }
-.data{
+}
+.data {
   min-width: 90px;
- }
-.name{
+}
+.name {
   width: 600px;
- }
-.amount{
+}
+.amount {
   width: 40px;
- }
-.distance{
+}
+.distance {
   width: 40px;
- }
-td{
+}
+td {
   text-overflow: ellipsis;
   height: 30px;
   text-align: center;
 }
 
-
 @media screen and (max-width: 1024px) {
-  .table{
+  .table {
     width: 650px;
-    }
+  }
 }
 @media screen and (max-width: 768px) {
-  .table{
+  .table {
     width: 450px;
-    }
+  }
 }
 @media screen and (max-width: 425px) {
-  .table{
+  .table {
     width: 350px;
     font-size: 12px;
-    }
-    .data{
-      min-width: 40px;
-     }
-    .name{
-      width: 300px;
-     }
-    .amount{
-      width: 20px;
-     }
-    .distance{
-      width: 20px;
-     }
+  }
+  .data {
+    min-width: 40px;
+  }
+  .name {
+    width: 300px;
+  }
+  .amount {
+    width: 20px;
+  }
+  .distance {
+    width: 20px;
+  }
 }
