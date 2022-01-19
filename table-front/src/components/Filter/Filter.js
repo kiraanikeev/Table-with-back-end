@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
+import './Filter.css'
 
-
-function Filter({ data, setNewData, setnumbersPosts}) {
+function Filter({ data, setNewData, setnumbersPosts, setCurrentPage}) {
 // Стейты сортировок
     const [filterColumn, setFilterColumn] = useState('')
     const [filterOption, setFilterOption] = useState('')
@@ -38,10 +38,11 @@ function Filter({ data, setNewData, setnumbersPosts}) {
              setFilterInput("")
              setFilterColumn("")
              setFilterOption("")
+             setCurrentPage("1")
             };
 //Валидация
   const[inputDirty, setInputDerty] = useState(false)
-  const[error, setError] = useState("Заполните поле")
+  const[error, setError] = useState("")
 // Инпут
 const inputHandler =(e)=>{
     setFilterInput(e.target.value)
@@ -77,10 +78,12 @@ const inputHandler =(e)=>{
               <option className={ filterColumn == "Название" ? "invisible" : "visible"}
                value="Меньше">Меньше</option>
             </select>
-            {error && <div>{error}</div>}
+            <div  className='block'>
+            {error && <div className='error'>{error}</div>}
             <input className='input' value={filterInput} disabled={!filterColumn || !filterOption} placeholder='введите значение'
             onChange={(e)=>inputHandler(e)}/>
             <button className='button' onClick={handleFilter} disabled={!filterColumn || !filterOption || !filterInput || !inputDirty} >Показать</button>
+            </div>
         </section>
     )
 }

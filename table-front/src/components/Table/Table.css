@@ -1,0 +1,54 @@
+.table{
+  width: 850px;
+  margin: 0 auto;
+  background-color: rgb(245, 242, 239);
+  display: flex;
+  border: 2px solid black;
+  }
+.data{
+  min-width: 90px;
+ }
+.name{
+  width: 600px;
+ }
+.amount{
+  width: 40px;
+ }
+.distance{
+  width: 40px;
+ }
+td{
+  text-overflow: ellipsis;
+  height: 30px;
+  text-align: center;
+}
+
+
+@media screen and (max-width: 1024px) {
+  .table{
+    width: 650px;
+    }
+}
+@media screen and (max-width: 768px) {
+  .table{
+    width: 450px;
+    }
+}
+@media screen and (max-width: 425px) {
+  .table{
+    width: 350px;
+    font-size: 12px;
+    }
+    .data{
+      min-width: 40px;
+     }
+    .name{
+      width: 300px;
+     }
+    .amount{
+      width: 20px;
+     }
+    .distance{
+      width: 20px;
+     }
+}

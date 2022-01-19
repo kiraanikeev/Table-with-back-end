@@ -1,4 +1,5 @@
 import React from 'react'
+import './Table.css'
 
 function Table({ numbersPosts, currentPosts}) {
     return (
@@ -7,10 +8,10 @@ function Table({ numbersPosts, currentPosts}) {
       <table>
         <thead>
           <tr>
-          <th>Дата</th>
-          <th>Название</th>
-          <th>Количество</th>
-          <th>Расстояние</th>
+          <th className="data">Дата</th>
+          <th className="name">Название</th>
+          <th className="amount">Количество</th>
+          <th className="distance">Расстояние</th>
           </tr>
         </thead>
          <tbody>

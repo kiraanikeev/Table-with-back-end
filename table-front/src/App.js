@@ -37,7 +37,8 @@ function App() {
     <h1 className="title">Таблица</h1>
     <Filter
     data={data} setNewData={setNewData} 
-    setnumbersPosts={setnumbersPosts}/>
+    setnumbersPosts={setnumbersPosts}
+    setCurrentPage={setCurrentPage}/>
     {newData 
     ? <Table 
     numbersPosts={numbersPosts}
@@ -46,7 +47,8 @@ function App() {
      <Pagination
      postsPerPage={postsPerPage}
      totalPosts={numbersPosts}
-     paginate={paginate} />
+     paginate={paginate} 
+     currentPage={currentPage}/>
     </div>
   );
 }

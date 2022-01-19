@@ -1,31 +1,8 @@
+.App{
+  font-family: 'EB Garamond', serif;
+}
 .title{
   text-align: center;
+  font-size: 46px;
 }
-.table{
-  width: 600px;
-  margin: 0 auto;
-  background-color: antiquewhite;
-}
-.sorting{
-  display: flex;
-  justify-content:center;
-}
-.filter{
-  margin-bottom: 30px;
-  cursor: pointer;
-}
-.input{
-  height: 16px;
-}
-.button{
-border: 1px solid black;
-height: 23px;
-cursor: pointer;
-}
-.visible{
 
-color: rgb(10, 8, 7);
-}
-.invisible{
-display: none;
-}

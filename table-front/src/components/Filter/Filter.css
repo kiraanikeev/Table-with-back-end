@@ -1,0 +1,80 @@
+.sorting{
+display: flex;
+justify-content:center;
+position: relative;
+ }
+.filter{
+margin-bottom: 30px;
+cursor: pointer;
+}
+.input{
+height: 16px;
+}
+.button{
+border: 1px solid black;
+height: 23px;
+cursor: pointer;
+}
+.visible{
+ color: rgb(10, 8, 7);
+ } 
+.invisible{
+display: none;
+}
+select {
+  appearance: none;
+  border: none;
+  padding: 0 1em 0 0;
+  margin-right: 5px;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  }
+  input{
+  width: 150px;
+  margin-right: 25px;
+  margin-top: 4px;
+  height: 17px;
+  border: none;
+  }
+  input:disabled {
+  background: #ccc;
+  border: none;
+  height: 15px;
+  }
+  button{
+  border: none;
+  height: 15px;
+  background-color: #fff;
+  }
+button:disabled {
+  background: #ccc;
+  border: none;
+  height: 17px;
+  margin-top: 4px;
+  }
+ .error{
+font-size: 15px;
+color: red;
+position: absolute;
+top: -17px;
+  }
+.block{
+  position: relative;
+  top: -3px;
+  }
+
+  @media screen and (max-width: 768px) {
+  .sorting{
+    flex-direction: column;
+    align-items: center;
+       }
+  select {
+   margin: 0 auto;
+   text-align: center;
+        }
+  .block{
+  margin-bottom: 30px;
+         }
+  }
