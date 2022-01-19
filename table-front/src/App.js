@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
-import './App.css';
-import axios from 'axios';
-import Preloader from './components/Preloader/Preloader';
-
+import { useState, useEffect } from 'react'
+import './App.css'
+import axios from 'axios'
+import Preloader from './components/Preloader/Preloader'
+import Pagination from './components/Pagination/Pagination'
+import Table from './components/Table/Table'
+import Filter from './components/Filter/Filter'
 function App() {
-
+//Получаем данные
   useEffect(() => {
     axios.get('http://localhost:8080/')
     .then(respons=>{
@@ -17,94 +19,34 @@ function App() {
 
   const [data, setData] = useState('')
   const [newData, setNewData] = useState('')
-  const [filterColumn, setFilterColumn] = useState('')
-  const [filterOption, setFilterOption] = useState('')
-  const [filterInput, setFilterInput] = useState('')
-
+  const [numbersPosts, setnumbersPosts] = useState('100')
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postsPerPage] = useState(10)
   
-const handleFilter = ()=>{
-let filter = data.filter(item=> {
-  switch (filterColumn) {
-    case "Название":
-      if(filterOption == "Определенное значение") 
-        return item.Название == filterInput
-        else if(filterOption == "Включает в себя") 
-        return item.Название.includes(filterInput)
-    break;
-    case "Расстояние":
-      if(filterOption == "Определенное значение") 
-        return item.Расстояние == filterInput
-        else if(filterOption == "Меньше") 
-        return item.Расстояние < filterInput
-          else if(filterOption == "Больше") 
-         return item.Расстояние > filterInput
-    break;
-    case "Количество":
-      if(filterOption == "Определенное значение") 
-            return item.Количество == filterInput
-        else if(filterOption == "Меньше")  
-              return item.Количество < filterInput
-          else if(filterOption == "Больше") 
-         return item.Количество > filterInput
-     break;
-     }})
-     setNewData(filter)
-     setFilterInput("")
-     setFilterColumn("")
-     setFilterOption("")
-    };
+  //Получаем стр пагинации
+  const lastPost = currentPage * postsPerPage
+  const firstPost = lastPost - postsPerPage
+  const currentPosts = newData.slice(firstPost, lastPost)
+
+  //Меняем стр
+  const paginate = pageNumber => setCurrentPage(pageNumber)
+
 
   return (
     <div className="App">
     <h1 className="title">Таблица</h1>
-    <section className="sorting">
-    <select className="filter" onChange={(e)=>setFilterColumn(e.target.value)} value={filterColumn}>
-          <option value="" disabled>Выберите колонку</option>
-          <option value="Название">Название</option>
-          <option value="Количество">Количество</option>
-          <option value="Расстояние">Расстояние</option>
-        </select>
-        <select className="filter" onChange={(e)=>setFilterOption(e.target.value)} value={filterOption}>
-        <option value="" disabled>Вид фильтрации</option>
-          <option className="visible"
-           value="Определенное значение">Определенное значение</option>
-          <option className={ filterColumn == "Название" ? "visible" : "invisible"}
-           value="Включает в себя">Включает в себя</option>
-          <option className={ filterColumn == "Название" ? "invisible" : "visible"}
-           value="Больше">Больше</option>
-          <option className={ filterColumn == "Название" ? "invisible" : "visible"}
-           value="Меньше">Меньше</option>
-        </select>
-        <input className='input' value={filterInput} placeholder='введите значение'
-        onChange={(e)=>setFilterInput(e.target.value)}/>
-        <button className='button' onClick={handleFilter} >Показать</button>
-    </section>
+    <Filter
+    data={data} setNewData={setNewData} 
+    setnumbersPosts={setnumbersPosts}/>
     {newData 
-    ?<section className="table">
-      <table>
-        <thead>
-          <tr>
-          <th>Дата</th>
-          <th>Название</th>
-          <th>Количество</th>
-          <th>Расстояние</th>
-          </tr>
-        </thead>
-        <tbody>
-          {newData.map(item=>{
-              return( 
-              <tr key={item._id}>
-              <td>{item.Дата}</td>
-              <td>{item.Название}</td>
-              <td>{item.Количество}</td>
-              <td>{item.Расстояние}</td>
-            </tr>)
-          })}
-          </tbody>
-      </table>
-    </section>
+    ? <Table 
+    numbersPosts={numbersPosts}
+    currentPosts={currentPosts}/>
     : <Preloader/>}
-     
+     <Pagination
+     postsPerPage={postsPerPage}
+     totalPosts={numbersPosts}
+     paginate={paginate} />
     </div>
   );
 }
