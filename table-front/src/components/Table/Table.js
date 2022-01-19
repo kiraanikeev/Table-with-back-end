@@ -16,7 +16,7 @@ function Table({ numbersPosts, currentPosts }) {
         <tbody>
           {!numbersPosts ? (
             <tr>
-              <td>Записи отсутствуют</td>
+              <td className="emptiness">Записи отсутствуют</td>
             </tr>
           ) : (
             currentPosts.map((item) => {
