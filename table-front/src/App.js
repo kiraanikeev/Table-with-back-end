@@ -23,7 +23,6 @@ function App() {
 
   
 const handleFilter = ()=>{
- console.log('newData 1', newData)
 let filter = data.filter(item=> {
   switch (filterColumn) {
     case "Название":
@@ -50,26 +49,34 @@ let filter = data.filter(item=> {
      break;
      }})
      setNewData(filter)
+     setFilterInput("")
+     setFilterColumn("")
+     setFilterOption("")
     };
 
-    
-    console.log('newData 2', newData)
   return (
     <div className="App">
     <h1 className="title">Таблица</h1>
     <section className="sorting">
-    <select className="filter" name="filter_1" onChange={(e)=>setFilterColumn(e.target.value)}>
+    <select className="filter" onChange={(e)=>setFilterColumn(e.target.value)} value={filterColumn}>
+          <option value="" disabled>Выберите колонку</option>
           <option value="Название">Название</option>
           <option value="Количество">Количество</option>
           <option value="Расстояние">Расстояние</option>
         </select>
-        <select className="filter" name="filter_2" onChange={(e)=>setFilterOption(e.target.value)}>
-          <option value="Определенное значение">Определенное значение</option>
-          <option value="Включает в себя">Включает в себя</option>
-          <option value="Больше">Больше</option>
-          <option value="Меньше">Меньше</option>
+        <select className="filter" onChange={(e)=>setFilterOption(e.target.value)} value={filterOption}>
+        <option value="" disabled>Вид фильтрации</option>
+          <option className="visible"
+           value="Определенное значение">Определенное значение</option>
+          <option className={ filterColumn == "Название" ? "visible" : "invisible"}
+           value="Включает в себя">Включает в себя</option>
+          <option className={ filterColumn == "Название" ? "invisible" : "visible"}
+           value="Больше">Больше</option>
+          <option className={ filterColumn == "Название" ? "invisible" : "visible"}
+           value="Меньше">Меньше</option>
         </select>
-        <input className='input' placeholder='введите значение'onChange={(e)=>setFilterInput(e.target.value)}/>
+        <input className='input' value={filterInput} placeholder='введите значение'
+        onChange={(e)=>setFilterInput(e.target.value)}/>
         <button className='button' onClick={handleFilter} >Показать</button>
     </section>
     {newData 

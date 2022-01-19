@@ -8,7 +8,7 @@
 }
 .sorting{
   display: flex;
-  justify-content:space-around;
+  justify-content:center;
 }
 .filter{
   margin-bottom: 30px;
@@ -21,4 +21,11 @@
 border: 1px solid black;
 height: 23px;
 cursor: pointer;
+}
+.visible{
+
+color: rgb(10, 8, 7);
+}
+.invisible{
+display: none;
 }
