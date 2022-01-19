@@ -7,85 +7,53 @@ function App() {
 
   useEffect(() => {
     axios.get('http://localhost:8080/')
-    .then(respons=>setData(respons.data))
+    .then(respons=>{
+      setData(respons.data)
+      setNewData(respons.data)})
         .catch((err) => {
         console.log(`Не удалось получить данные пользователя ${err}`);
       });
-  }, []);
-
-
+    }, []);
 
   const [data, setData] = useState('')
-  const [filrerColumn, setFilterColumn] = useState('')
-  const [filrerOption, setFilterOption] = useState('')
-  const [filrerInput, setFilterInput] = useState('')
-  const [filrer, setFilter] = useState([])
+  const [newData, setNewData] = useState('')
+  const [filterColumn, setFilterColumn] = useState('')
+  const [filterOption, setFilterOption] = useState('')
+  const [filterInput, setFilterInput] = useState('')
+
   
-
-
 const handleFilter = ()=>{
-
-
-//  data.filter(item=>{
-// let itemValue;
-
-//     if (filrerColumn === 'Название') {
-//       itemValue = item.Название
-//     } else if (filrerColumn === 'Расстояние') {
-//       itemValue = item.Расстояние
-//     } else if (filrerColumn === 'Количество') {
-//       itemValue = item.Количество
-//     }
-//     return(itemValue == filrerInput)
-    
-//   });
-
-let filrer2=[]
-data.filter(item=> {
-  switch (filrerColumn) {
+ console.log('newData 1', newData)
+let filter = data.filter(item=> {
+  switch (filterColumn) {
     case "Название":
-      if(filrerOption == "Определенное значение" && item.Название == filrerInput)
-        // console.log(item)
-        setData(item)
-        else
-        if(filrerOption == "Включает в себя" && item.Название.includes(filrerInput))
-        // console.log(item)
-        setData(item)
+      if(filterOption == "Определенное значение") 
+        return item.Название == filterInput
+        else if(filterOption == "Включает в себя") 
+        return item.Название.includes(filterInput)
     break;
     case "Расстояние":
-      if(filrerOption == "Определенное значение" && item.Расстояние == filrerInput)
-        // console.log(item)
-        setData(item)
-        else
-        if(filrerOption == "Меньше" && item.Расстояние < filrerInput)
-         // console.log(item)
-         setData(item)
-          else
-          if(filrerOption == "Больше" && item.Расстояние > filrerInput)
-               // console.log(item)
-               setData(item)
+      if(filterOption == "Определенное значение") 
+        return item.Расстояние == filterInput
+        else if(filterOption == "Меньше") 
+        return item.Расстояние < filterInput
+          else if(filterOption == "Больше") 
+         return item.Расстояние > filterInput
     break;
     case "Количество":
-      if(filrerOption == "Определенное значение" && item.Количество == filrerInput)
-            // console.log(item)
-            setFilter(item)
-        else
-        if(filrerOption == "Меньше" && item.Количество < filrerInput)
-              // console.log(item)
-              setFilter(item)
-          else
-          if(filrerOption == "Больше" && item.Количество > filrerInput)
-                  // console.log(item)
-                 setFilter(item)
-                // filrer2 = [item]
+      if(filterOption == "Определенное значение") 
+            return item.Количество == filterInput
+        else if(filterOption == "Меньше")  
+              return item.Количество < filterInput
+          else if(filterOption == "Больше") 
+         return item.Количество > filterInput
      break;
      }})
-    console.log(filrer2)
-    console.log(filrer)
+     setNewData(filter)
     };
-  
-    
 
+    
+    console.log('newData 2', newData)
   return (
     <div className="App">
     <h1 className="title">Таблица</h1>
@@ -104,7 +72,7 @@ data.filter(item=> {
         <input className='input' placeholder='введите значение'onChange={(e)=>setFilterInput(e.target.value)}/>
         <button className='button' onClick={handleFilter} >Показать</button>
     </section>
-    {data  
+    {newData 
     ?<section className="table">
       <table>
         <thead>
@@ -116,7 +84,7 @@ data.filter(item=> {
           </tr>
         </thead>
         <tbody>
-          {data.map(item=>{
+          {newData.map(item=>{
               return( 
               <tr key={item._id}>
               <td>{item.Дата}</td>
