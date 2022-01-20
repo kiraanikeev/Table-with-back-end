@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const dataSchema = new mongoose.Schema({
     Дата: {
-        type: Number,
+        type: String,
     },
     Название: {
         type: String,
@@ -15,4 +15,4 @@ const dataSchema = new mongoose.Schema({
     },
 })
 
-module.exports = mongoose.model('data', dataSchema)
+module.exports = mongoose.model('users', dataSchema)
