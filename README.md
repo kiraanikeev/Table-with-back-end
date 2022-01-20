@@ -1,10 +1,22 @@
-# Table-with-back-end
+# Название проекта: Таблица в формате Single Page Application
 
-## The project is under implementation
+## Стек:
 
-### Project Information:
+- Frontend: React js
+- Backend: Express js, Node js, MongoDB
 
-**Description:**
+## Инструкция по запуску:
 
+Для запуска проекта:
 
-**Technology:**
+1. Клонировать репозиторий
+2. Для запуска бэкенда:
+   1. Перейти в папку /table-back
+   2. Установить зависимости: `npm install`
+   3. Запустить базу данных на MongoDB: `mongod`
+   4. В другом терминале запустить сервер: `npm run dev`
+   5. Запускается на порту 8080 `htt
+3. Для запуска фронтенда:
+   1. Перейти в папку /table-front
+   2. Установить зависимости: `npm install`
+   3. Запустить командой: `npm start`
